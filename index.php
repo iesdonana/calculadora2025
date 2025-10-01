@@ -44,10 +44,6 @@
     $op1 = obtener_get('op1');
     $op2 = obtener_get('op2');
     $op  = obtener_get('op');
-
-    if (isset($op1, $op2, $op)) {
-        $res = calcular_resultado($op1, $op2, $op);
-    }
     ?>
     <form action="" method="get">
         <label for="op1">Primer operando<sup>*</sup>:</label>
@@ -66,10 +62,15 @@
         <br>
         <button type="submit">Calcular</button>
     </form>
-    <?php if (isset($res)): ?>
-        <h3>El resultado de <?= "$op1 $op $op2" ?> es <?= $res ?></h3>
-    <?php else: ?>
-        <h3>Error: el operador es incorrecto.</h3>
-    <?php endif ?>
+    <?php
+    if (isset($op1, $op2, $op)) {
+        $res = calcular_resultado($op1, $op2, $op);
+        if (!isset($res)) {
+            echo "<h3>Error: el operador es incorrecto.</h3>";
+        } else {
+            echo "<h3>El resultado de $op1 $op $op2 es $res</h3>";
+        }
+    }
+    ?>
 </body>
 </html>
