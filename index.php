@@ -41,6 +41,16 @@
         return isset($_GET[$par]) ? trim($_GET[$par]) : null;
     }
 
+    function mostrar_error()
+    {
+        echo "<h3>Error: el operador es incorrecto.</h3>";
+    }
+
+    function mostrar_resultado($op1, $op2, $op, $res)
+    {
+        echo "<h3>El resultado de $op1 $op $op2 es $res</h3>";
+    }
+
     $op1 = obtener_get('op1');
     $op2 = obtener_get('op2');
     $op  = obtener_get('op');
@@ -63,12 +73,12 @@
         <button type="submit">Calcular</button>
     </form>
     <?php
-    if (isset($op1, $op2, $op)) {
+    if (isset($op1, $op2, $op)) {   // Si no es la primera vez que entra
         $res = calcular_resultado($op1, $op2, $op);
-        if (!isset($res)) {
-            echo "<h3>Error: el operador es incorrecto.</h3>";
+        if (!isset($res)) {     // Si la operación es incorrecta
+            mostrar_error();
         } else {
-            echo "<h3>El resultado de $op1 $op $op2 es $res</h3>";
+            mostrar_resultado($op1, $op2, $op, $res);
         }
     }
     ?>
