@@ -7,49 +7,7 @@
 </head>
 <body>
     <?php
-    /**
-     * Calcula el resultado de la operación definida en $op
-     * sobre los operandos $op1 y $op2.
-     */
-    function calcular_resultado($op1, $op2, $op)
-    {
-        switch ($op) {
-            case '+':
-                $res = $op1 + $op2;
-                break;
-            case '-':
-                $res = $op1 - $op2;
-                break;
-            case '*':
-                $res = $op1 * $op2;
-                break;
-            case '/':
-                $res = $op1 / $op2;
-                break;
-            default:
-                $res = null;
-        }
-        return $res;
-    }
-
-    /**
-     * Devuelve el valor recogido por GET de un parámetro de la petición.
-     * Devuelve null si el parámetro no existe.
-     */
-    function obtener_get($par)
-    {
-        return isset($_GET[$par]) ? trim($_GET[$par]) : null;
-    }
-
-    function mostrar_error()
-    {
-        echo "<h3>Error: el operador es incorrecto.</h3>";
-    }
-
-    function mostrar_resultado($op1, $op2, $op, $res)
-    {
-        echo "<h3>El resultado de $op1 $op $op2 es $res</h3>";
-    }
+    require 'auxiliar.php';
 
     $op1 = obtener_get('op1');
     $op2 = obtener_get('op2');
