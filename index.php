@@ -12,25 +12,9 @@
     $op1 = obtener_get('op1');
     $op2 = obtener_get('op2');
     $op  = obtener_get('op');
-    ?>
-    <form action="" method="get">
-        <label for="op1">Primer operando<sup>*</sup>:</label>
-        <input type="text" name="op1" id="op1" value="<?= $op1 ?>">
-        <br>
-        <label for="op2">Segundo operando<sup>*</sup>:</label>
-        <input type="text" name="op2" id="op2" value="<?= $op2 ?>">
-        <br>
-        <label for="op">Operación<sup>*</sup>:</label>
-        <select name="op" id="op">
-            <option value="+" <?= $op == '+' ? 'selected' : '' ?> >Suma</option>
-            <option value="-" <?= $op == '-' ? 'selected' : '' ?> >Resta</option>
-            <option value="*" <?= $op == '*' ? 'selected' : '' ?> >Multiplicación</option>
-            <option value="/" <?= $op == '/' ? 'selected' : '' ?> >División</option>
-        </select>
-        <br>
-        <button type="submit">Calcular</button>
-    </form>
-    <?php
+
+    dibujar_formulario($op1, $op2, $op);
+
     if (isset($op1, $op2, $op)) {   // Si no es la primera vez que entra
         $error = [];
         validar_op1($op1, $error);

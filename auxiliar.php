@@ -1,6 +1,11 @@
 <?php
 
-const OPS = ['+', '-', '*', '/'];
+const OPS = [
+    '+' => 'Suma',
+    '-' => 'Resta',
+    '*' => 'Multiplicación',
+    '/' => 'División'
+];
 
 /**
  * Calcula el resultado de la operación definida en $op
@@ -70,7 +75,34 @@ function validar_op($op, &$error)
 {
     if (empty($op)) {
         $error['op'] = 'La operación a realizar es obligatoria';
-    } elseif (!in_array($op, OPS)) {
+    } elseif (!key_exists($op, OPS)) {
         $error['op'] = 'La operación es incorrecta';
     }
+}
+
+function selected($op, $v)
+{
+    return $op == $v ? 'selected' : '';
+}
+
+function dibujar_formulario($op1, $op2, $op)
+{
+?>
+    <form action="" method="get">
+        <label for="op1">Primer operando<sup>*</sup>:</label>
+        <input type="text" name="op1" id="op1" value="<?= $op1 ?>">
+        <br>
+        <label for="op2">Segundo operando<sup>*</sup>:</label>
+        <input type="text" name="op2" id="op2" value="<?= $op2 ?>">
+        <br>
+        <label for="op">Operación<sup>*</sup>:</label>
+        <select name="op" id="op">
+            <?php foreach (OPS as $k => $v): ?>
+                <option value="<?= $k ?>" <?= selected($op, $k) ?> ><?= $v ?></option>
+            <?php endforeach ?>
+        </select>
+        <br>
+        <button type="submit">Calcular</button>
+    </form>
+<?php
 }
