@@ -11,7 +11,7 @@ const OPS = [
  * Calcula el resultado de la operación definida en $op
  * sobre los operandos $op1 y $op2.
  */
-function calcular_resultado($op1, $op2, $op)
+function calcular_resultado(string $op1, string $op2, string $op): int|float
 {
     switch ($op) {
         case '+':
@@ -34,26 +34,26 @@ function calcular_resultado($op1, $op2, $op)
  * Devuelve el valor recogido por GET de un parámetro de la petición.
  * Devuelve null si el parámetro no existe.
  */
-function obtener_get($par)
+function obtener_get(string $par): ?string
 {
     return isset($_GET[$par]) ? trim($_GET[$par]) : null;
 }
 
-function mostrar_errores($error)
+function mostrar_errores(array $error): void
 {
     foreach ($error as $mensaje) { ?>
         <h3>Error: <?= $mensaje ?></h3><?php
     }
 }
 
-function mostrar_resultado($op1, $op2, $op, $res)
+function mostrar_resultado(string $op1, string $op2, string $op, int|float $res): void
 {
 ?>
     <h3>El resultado de <?= "$op1 $op $op2" ?> es <?= $res ?></h3>
 <?php
 }
 
-function validar_op1($op1, &$error)
+function validar_op1(string $op1, array &$error): void
 {
     if (empty($op1)) {
         $error['op1'] = 'El primer operando es obligatorio';
@@ -62,7 +62,7 @@ function validar_op1($op1, &$error)
     }
 }
 
-function validar_op2($op2, &$error)
+function validar_op2(string $op2, array &$error): void
 {
     if (empty($op2)) {
         $error['op2'] = 'El segundo operando es obligatorio';
@@ -71,7 +71,7 @@ function validar_op2($op2, &$error)
     }
 }
 
-function validar_op($op, &$error)
+function validar_op(string $op, array &$error): void
 {
     if (empty($op)) {
         $error['op'] = 'La operación a realizar es obligatoria';
@@ -80,12 +80,12 @@ function validar_op($op, &$error)
     }
 }
 
-function selected($op, $v)
+function selected(string $op, string $v): string
 {
     return $op == $v ? 'selected' : '';
 }
 
-function dibujar_formulario($op1, $op2, $op)
+function dibujar_formulario(string $op1, string $op2, string $op): void
 {
 ?>
     <form action="" method="get">
