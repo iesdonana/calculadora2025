@@ -12,8 +12,6 @@
     $op1 = obtener_get('op1');
     $op2 = obtener_get('op2');
     $op  = obtener_get('op');
-
-    $error = [];
     ?>
     <form action="" method="get">
         <label for="op1">Primer operando<sup>*</sup>:</label>
@@ -34,21 +32,10 @@
     </form>
     <?php
     if (isset($op1, $op2, $op)) {   // Si no es la primera vez que entra
-        if (empty($op1)) {
-            $error['op1'] = 'El primer operando es obligatorio';
-        } elseif (!is_numeric($op1)) {
-            $error['op1'] = 'El primer operando no es un número válido';
-        }
-        if (empty($op2)) {
-            $error['op2'] = 'El segundo operando es obligatorio';
-        } elseif (!is_numeric($op2)) {
-            $error['op2'] = 'El segundo operando no es un número válido';
-        }
-        if (empty($op)) {
-            $error['op'] = 'La operación a realizar es obligatoria';
-        } elseif (!in_array($op, OPS)) {
-            $error['op'] = 'La operación es incorrecta';
-        }
+        $error = [];
+        validar_op1($op1, $error);
+        validar_op2($op2, $error);
+        validar_op($op, $error);
         if (empty($error)) {
             $res = calcular_resultado($op1, $op2, $op);
             mostrar_resultado($op1, $op2, $op, $res);
