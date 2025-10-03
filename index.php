@@ -15,17 +15,17 @@
     ?>
     <form action="" method="get">
         <label for="op1">Primer operando<sup>*</sup>:</label>
-        <input type="text" name="op1" id="op1">
+        <input type="text" name="op1" id="op1" value="<?= $op1 ?>">
         <br>
         <label for="op2">Segundo operando<sup>*</sup>:</label>
-        <input type="text" name="op2" id="op2">
+        <input type="text" name="op2" id="op2" value="<?= $op2 ?>">
         <br>
         <label for="op">Operación<sup>*</sup>:</label>
         <select name="op" id="op">
-            <option value="+">Suma</option>
-            <option value="-">Resta</option>
-            <option value="*">Multiplicación</option>
-            <option value="/">División</option>
+            <option value="+" <?= $op == '+' ? 'selected' : '' ?> >Suma</option>
+            <option value="-" <?= $op == '-' ? 'selected' : '' ?> >Resta</option>
+            <option value="*" <?= $op == '*' ? 'selected' : '' ?> >Multiplicación</option>
+            <option value="/" <?= $op == '/' ? 'selected' : '' ?> >División</option>
         </select>
         <br>
         <button type="submit">Calcular</button>
