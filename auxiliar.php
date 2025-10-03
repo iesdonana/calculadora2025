@@ -1,4 +1,7 @@
 <?php
+
+const OPS = ['+', '-', '*', '/'];
+
 /**
  * Calcula el resultado de la operación definida en $op
  * sobre los operandos $op1 y $op2.
@@ -18,8 +21,6 @@ function calcular_resultado($op1, $op2, $op)
         case '/':
             $res = $op1 / $op2;
             break;
-        default:
-            $res = null;
     }
     return $res;
 }
@@ -33,12 +34,16 @@ function obtener_get($par)
     return isset($_GET[$par]) ? trim($_GET[$par]) : null;
 }
 
-function mostrar_error()
+function mostrar_errores($error)
 {
-    echo "<h3>Error: el operador es incorrecto.</h3>";
+    foreach ($error as $mensaje) {
+        echo "<h3>Error: $mensaje</h3>";
+    }
 }
 
 function mostrar_resultado($op1, $op2, $op, $res)
 {
-    echo "<h3>El resultado de $op1 $op $op2 es $res</h3>";
+?>
+    <h3>El resultado de <?= "$op1 $op $op2" ?> es <?= $res ?></h3>
+<?php
 }
