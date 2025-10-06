@@ -80,12 +80,12 @@ function validar_op(string $op, array &$error): void
     }
 }
 
-function selected(string $op, string $v): string
+function selected(?string $op, string $v): string
 {
     return $op == $v ? 'selected' : '';
 }
 
-function dibujar_formulario(string $op1, string $op2, string $op): void
+function dibujar_formulario(?string $op1, ?string $op2, ?string $op): void
 {
 ?>
     <form action="" method="get">
